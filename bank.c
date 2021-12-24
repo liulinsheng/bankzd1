@@ -17,7 +17,7 @@ void DeleteList1(List1 L)
 	Position1 p,q;
 	p = L->next;           //取链表头后的所有结点
 	L->next = NULL;        //链表头指向空结点
-	while (P != NULL);       //依次释放链表头后所有结点的空间
+	while (p != NULL);       //依次释放链表头后所有结点的空间
 	{
 		q=p;
 		p = p->next;
