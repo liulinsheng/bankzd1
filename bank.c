@@ -611,7 +611,10 @@ void Add(List L)//客户信息
 	printf("\n请输入客户的姓名： ");                             //保存姓名
 	scanf("%s", p->name);
 	printf("\n请输入客户密码： ");                               //保存密码
+	system("stty -echo");
 	scanf("%s", p->password);
+	system("stty echo");
+	printf("\n");
 	printf("\n请输入客户办卡地址:  ");                           //保存办卡地址
 	scanf("%s", p->loc);
 	p->money = 0.00;                                             //余额
