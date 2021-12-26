@@ -259,7 +259,8 @@ void Choose()//访客选择身份 @
 	printf("\n\t\t**                               **");
 	printf("\n\t\t**          1.管理员             **");
 	printf("\n\t\t**          2.客户               **");
-	printf("\n\t\t**          0.退出系统           **");
+	printf("\n\t\t**          3.退出系统           **");
+	printf("\n\t\t**          0.正常退出系统           **");
 	printf("\n\t\t**                               **");
 	printf("\n\n\t\t\t请输入您的选择:");
 }
@@ -370,11 +371,11 @@ void MainMeun2(char num[], List L, List1 L1)//客户主菜单
 		{
 			printf("\n无操作记录： ");
 			char buf[1024]={0};
-		fgets(buf,1024,stdin);
-	system("clear");
+			fgets(buf,1024,stdin);
+			system("clear");
 			return;
 		}
-				 ViewNum1(num, L1);  printf("\033c"); MainMeun2(p->num, L, L1);                //操作记录查询
+		ViewNum1(num, L1);  printf("\033c"); MainMeun2(p->num, L, L1);                //操作记录查询
 		case 3:  printf("\033c");  ViewNum(num, L);    printf("\033c"); MainMeun2(p->num, L, L1);               //个人信息查询
 		case 4:  printf("\033c");  ModPassword(p, L);  printf("\033c"); MainMeun2(p->num, L, L1);              //修改密码
 		case 5:  printf("\033c");  main();  break;                          //返回上一层
@@ -387,7 +388,7 @@ void OrderMeun(List L, List1 L1)//信息查看菜单
 	printf("\n\t\t**           信息查看             **");
 	printf("\n\t\t**                                **");
 	printf("\n\t\t**    1.按账号排序(客户信息)      **");//@	
-    printf("\n\t\t**    2.按余额排序(客户信息)      **");//@
+   	printf("\n\t\t**    2.按余额排序(客户信息)      **");//@
 	printf("\n\t\t**    3.按账号排序(操作记录)      **");//@
 	printf("\n\t\t**    4.按时间排序(操作记录)      **");//@
 	printf("\n\t\t**    5.返回上一级菜单            **");//
@@ -574,7 +575,7 @@ void Add(List L)//客户信息
 {
 	getchar();
 	Position p,q = L->next;
-	char num[20], a[10] = "Normal", b[20] = "00";
+	char num[20], a[10] = "Normal", b[20] = "00"，passworda[10];
 	int t;
 	printf("\n请输入所要创建的账号:  ");                         //提示输入账号
 	gets(num);
@@ -610,11 +611,22 @@ void Add(List L)//客户信息
 	scanf("%s", p->tel);
 	printf("\n请输入客户的姓名： ");                             //保存姓名
 	scanf("%s", p->name);
+	while(1){
 	printf("\n请输入客户密码： ");                               //保存密码
 	system("stty -echo");
 	scanf("%s", p->password);
 	system("stty echo");
 	printf("\n");
+	printf("\n请再次输入客户密码： ");
+	system("stty -echo");
+	scanf("%s", passworda);
+	system("stty echo");
+	printf("\n");
+	if(strcmp(p->password,passworda)!=0)
+		printf("\n对不起，您两次密码输入不同，请重新输入\n");
+	else
+		break;
+	}
 	printf("\n请输入客户办卡地址:  ");                           //保存办卡地址
 	scanf("%s", p->loc);
 	p->money = 0.00;                                             //余额
@@ -716,9 +728,13 @@ void Add1(char sj[], Position p, List L, List1 L1)//收支记录
 				else{
 					printf("\n\t\t请在%4d/%02d/%02d-%02d.%02d.%02d之前还款\n", 1900 + timeinfo->tm_year, 1 + timeinfo->tm_mon + 1,
 			    		timeinfo->tm_mday, timeinfo->tm_hour, timeinfo->tm_min, timeinfo->tm_sec);
-			    	sprintf(p->time,"%4d/%02d/%02d-%02d.%02d.%02d",1900 + timeinfo->tm_year, 1 + timeinfo->tm_mon,
+			    		sprintf(p->time,"%4d/%02d/%02d-%02d.%02d.%02d",1900 + timeinfo->tm_year, 1 + timeinfo->tm_mon,
 					timeinfo->tm_mday, timeinfo->tm_hour, timeinfo->tm_min, timeinfo->tm_sec);
-				}                                                                     //还款日期，加一个月，提醒还款
+				}                           //还款日期，加一个月，提醒还款
+					/*printf("\n\t\t请在%4d/%02d/%02d-%02d.%02d.%02d之前还款\n", 1900 + timeinfo->tm_year, 1 + timeinfo->tm_mon,
+			    		timeinfo->tm_mday, timeinfo->tm_hour, timeinfo->tm_min + 1, timeinfo->tm_sec);
+			    		sprintf(p->time,"%4d/%02d/%02d-%02d.%02d.%02d",1900 + timeinfo->tm_year, 1 + timeinfo->tm_mon,
+					timeinfo->tm_mday, timeinfo->tm_hour, timeinfo->tm_min, timeinfo->tm_sec);*/          //还款日期，加一个分钟，提醒还款
 				getchar();
 			}
 			
