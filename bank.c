@@ -1519,3 +1519,39 @@ void jiesuo(List L, List1 L1)
 		}
 	}
 }
+void TrainMove()
+{
+	for(int y=0;y<=3;y++){
+	int a=0,b;
+	while(a<=70)
+	{
+		system("clear"); b=1;
+ 		printf("\n\n\n\n\n\n\n\n\n\n\n\n\n"); 
+ 		while(b<=a)
+		{
+			printf(" ");b++;
+		}
+		printf(" Thank you for using,welcom to visit again\n");
+		b=1;
+		while(b<=a)
+		{
+			printf(" ");b++;
+		}
+		printf("┌════════┐...┌════════┐...┌.═════════┐   ╭═════╮\n");
+		b=1;
+		while(b<=a)
+		{
+			printf(" ");b++;
+		}
+		printf("║        ║ ═ ║        ║ ═ ║          ║═  ║ 　  ║\n");
+		b=1;
+		while(b<=a)
+		{
+			printf(" ");b++;
+		}
+		printf("└⊙═⊙═⊙═⊙ ⊙═⊙═⊙═⊙  └⊙═⊙═⊙═⊙~~ ╰⊙═⊙╯\n");
+		sleep(1);
+		a=a+1;
+		}	
+	}
+}
