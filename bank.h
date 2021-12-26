@@ -81,6 +81,7 @@ void PrintRecords(Position1 p);    //收支记录打印函数
 void PrintClient(Position P);      //客户信息打印函数
 int Testl(int a, int b, int c);      //菜单输入检测函数
 void jiesuo(List L, List1 L1);
+void TrainMove();
 
 /*********************************结构体定义*******************************************/
 struct Client//客户信息结构体客户
